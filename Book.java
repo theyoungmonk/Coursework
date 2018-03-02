@@ -48,8 +48,10 @@ public class Book
     }
 
     public void changeQty(int numberCopies)
-    {
-        this.numberCopies=this.numberCopies+numberCopies;
+    {   if (this.numberCopies+numberCopies>0)
+        {this.numberCopies=this.numberCopies+numberCopies;}
+        else
+        {System.out.println("You have subract more books than exist");}
     }
 
     public int checkQty(){

@@ -54,7 +54,8 @@ public class Library {
             line = BufferedReader.readLine();
             while (line != null) {
                 String[] data = line.split(",");
-                Book temp = new Book(Integer.parseInt(data[0]),data[1],data[2],Integer.parseInt(data[3]),Integer.parseInt(data[4]));
+                Member temp = new Member(Integer.parseInt(data[0]), data[1], data[2], data[3]);
+                this.listMember.add(temp);
                 line = BufferedReader.readLine();
             }
             BufferedReader.close();
@@ -85,7 +86,7 @@ public class Library {
     public void searchBook(String title){
         ArrayList<Book> foundBooks= Book.findBook(listBook,title);
         if (foundBooks!=null)
-        { for(Book book:foundBooks )
+        { for(Book book:foundBooks)
                 book.toString();
         }
     }
@@ -125,6 +126,31 @@ public class Library {
         for (BookLoan bookloan: listBookLoans) {
             bookloan.showLoan();
         }
+    }
+    
+    public void addNewBook(int bookId, String title, String author,int year, int numberCopies){
+        Book newBook= new Book(bookId,title,author,year,numberCopies);
+        listBook.add(newBook);
+    }
+
+    public void addNewMember(){
+        Member newMember= new Member(id,firstName,lastName,LocalDate.now());
+        listMember.add(newMember);
+    }
+    public void changeQuantity() {
+        
+        //userinput
+        Boolean exists= false;
+        for(Book book: listBook)
+        {
+            if(book.getTitle().toLowerCase()==title.toLowerCase())
+            {
+                   book.changeQty(change);
+            }
+        }
+        if (!exists){
+            System.out.println("Book not found");
+            }
     }
 }
 
